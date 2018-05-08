@@ -1,6 +1,7 @@
 var gulp  = require('gulp'),
     order = require('gulp-order'),
     sass  = require('gulp-sass');
+    imgm  = require('gulp-imagemin')
 
 
 gulp.task('sass', function() {
@@ -13,9 +14,13 @@ gulp.task('watch', function(){
   gulp.watch('src/sass/**/*.scss', ['sass']);
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['imgm']);
 
-
+gulp.task('imgm', () =>
+    gulp.src('src/img/*')
+        .pipe(imgm())
+        .pipe(gulp.dest('dist/img'))
+);
 
 /*
 Template
